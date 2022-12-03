@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const pageController = require('../controllers/page.c');
-const productController = require('../controllers/product.c');
+const movieController = require('../controllers/movie.c');
 
-router.use('/home/product/:id', productController.getDetail);
+router.get('/home/movie/:id', movieController.getDetail);
+router.post('/home/movie/:id', movieController.addMovieToFav);
 router.use('/home/search', pageController.search);
 router.get('/login', pageController.login);
 router.post('/login', pageController.checkLogin);

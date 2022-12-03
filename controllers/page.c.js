@@ -1,14 +1,14 @@
 const auth = require('../models/auth.m');
-const product = require('../models/product.m');
+const movies = require('../models/movie.m');
 
 class PageController {
     async home(req, res, next) {
         // res.render('home_page')
         try {
             if (req.session.loggedin){
-                let products = await product.getAll()
+                let movies_data = await movies.getAll()
                 res.render('home_page', {
-                    products: products
+                    movies: movies_data
                 });
             }else{
                 req.session.back="/home";
@@ -24,10 +24,9 @@ class PageController {
         // res.render('home_page')
         try {
             if (req.session.loggedin){
-                let products = await product.search(req.body.search)
-                // console.log(products)
+                let movies_data = await movies.search(req.body.search)
                 res.render('home_page', {
-                    products: products
+                    movies: movies_data
                 });
             }else{
                 req.session.back="/home";

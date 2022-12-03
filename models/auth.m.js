@@ -3,12 +3,17 @@ const db = require("./database")
 
 const saltRounds = 10;
 
+const querySignUp = `
+INSERT INTO "Users" ("f_Username", "f_Password", "f_Name", "f_Email", "f_DOB", "f_Permission") 
+VALUES($1, $2, $3, $4, $5, $6)
+`
+
 class Auth {
     async signup(username, fullname, email, password) {
         const hashedPassword = await bcrypt.hash(password, saltRounds)
-        const id = 22
-        var values = [id, username, hashedPassword, fullname, email, '2014-03-19 00:00:00.000', 0]
-        db.query('INSERT INTO "Users" VALUES($1, $2, $3, $4, $5, $6, $7)', values, (err, res) => {
+        let date = new Date();
+        var values = [username, hashedPassword, fullname, email, date, 0]
+        db.query(querySignUp, values, (err, res) => {
             if (err) {
                 console.log(err.message);
             }
