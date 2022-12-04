@@ -191,7 +191,7 @@ class Movie {
 }
 
 let movie = new Movie
-// movie.importCastFromJson()
-// movie.importMovieFromJson()
+movie.importCastFromJson()
+movie.importMovieFromJson()
 
 module.exports = new Movie;
