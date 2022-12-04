@@ -1,60 +1,55 @@
-<div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/home/favorite">Favorite</a>
-                    </li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/home/favorite">Favorite</a>
+                </li>
+            </ul>
+            <form class="d-flex me-4" method="get" action="/home/search/0">
+                <select name="type" class="form-select">
+                    <option selected>Search type</option>
+                    <option>Actor</option>
+                    <option>Movie</option>
+                </select>
+                <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <a href="/logout">
+                <button class="btn btn-outline-danger" type="button">Logout</button>
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="row mt-5">
+    {{#each movies}}
+        <div class="col-4 mb-4">
+            <div class="card h-100 w-100">
+                <img src={{ Image }} class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ Title }}</h5>
+                    <p>Rating: {{ Rating }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Genres: {{ Genres }}</li>
+                    <li class="list-group-item">Year: {{ Year }}</li>
                 </ul>
-                <form class="d-flex me-4" method="get" action="/home/search/0">
-                    <select name="type" class="form-select">
-                        <option selected>Search type</option>
-                        <option>Actor</option>
-                        <option>Movie</option>
-                    </select>
-                    <input class="form-control me-2" name="search" type="search" placeholder="Search"
-                        aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <a href="/home/movie/{{ ID }}" class="btn btn-primary">Details</a>
+
+                <form action="/home/favorite/delete/{{ ID }}" method="post" class="d-grid gap-2">
+                    <button class="btn btn-danger" type="submit">Delete</button>
                 </form>
-                <a href="/logout">
-                    <button class="btn btn-outline-danger" type="button">Logout</button>
-                </a>
             </div>
         </div>
-    </nav>
-    <div class="row mt-5">
-        {{#each movies}}
-        {{!-- <a href="/products/{{ ProID }}"> --}}
-            <div class="col-4 mb-4">
-                <div class="card h-100 w-100">
-                    <img src={{ Image }} class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ Title }}</h5>
-                        <p>Rating: {{ Rating }}</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Genres: {{ Genres }}</li>
-                        <li class="list-group-item">Year: {{ Year }}</li>
-                    </ul>
-                    <a href="/home/movie/{{ ID }}" class="btn btn-primary">Details</a>
-
-                    <form action="/home/favorite/delete/{{ ID }}" method="post" class="d-grid gap-2">
-                        <button class="btn btn-danger" type="submit">Delete</button>
-                    </form>
-                </div>
-            </div>
-            {{!--
-        </a> --}}
-        {{/each}}
-    </div>
+    {{/each}}
 </div>
+
+{{> footer}}
