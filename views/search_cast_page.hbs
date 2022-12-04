@@ -1,0 +1,78 @@
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home/favorite">Favorite</a>
+                    </li>
+                </ul>
+                <form class="d-flex me-4" method="get" action="/home/search/0">
+                    <select name="type" class="form-select">
+                        <option selected>Search type</option>
+                        <option>Actor</option>
+                        <option>Movie</option>
+                    </select>
+                    <input class="form-control me-2" name="search" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <a href="/logout">
+                    <button class="btn btn-outline-danger" type="button">Logout</button>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="row mt-5">
+
+        <div class="col mb-4">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">BirthPlace</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each casts}}
+                    <tr>
+                        <td><img src={{ Image }} alt={{ ID }} height="150"></td>
+                        <td>{{ Name }}</td>
+                        <td>{{ Gender }}</td>
+                        <td>{{ BirthPlace }}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="/home/search/0?type=Actor&search={{query}}">1</a></li>
+            <li class="page-item"><a class="page-link" href="/home/search/1?type=Actor&search={{query}}">2</a></li>
+            <li class="page-item"><a class="page-link" href="/home/search/2?type=Actor&search={{query}}">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

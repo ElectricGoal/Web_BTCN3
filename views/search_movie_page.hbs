@@ -22,7 +22,7 @@
                         <option>Actor</option>
                         <option>Movie</option>
                     </select>
-                    <input class="form-control ms-2 me-2" name="search" type="search" placeholder="Search"
+                    <input class="form-control me-2" name="search" type="search" placeholder="Search"
                         aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
@@ -34,20 +34,37 @@
     </nav>
     <div class="row mt-5">
         {{#each movies}}
-            <div class="col-4 mb-4">
-                <div class="card h-100 w-100">
-                    <img src={{ Image }} class="card-img-top" alt={{ ID }}>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ Title }}</h5>
-                        <p>Rating: {{ Rating }}</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Genres: {{ Genres }}</li>
-                        <li class="list-group-item">Year: {{ Year }}</li>
-                    </ul>
-                    <a href="/home/movie/{{ ID }}" class="btn btn-primary">Details</a>
+        <div class="col-4 mb-4">
+            <div class="card h-100 w-100">
+                <img src={{ Image }} class="card-img-top" alt={{ ID }}>
+                <div class="card-body">
+                    <h5 class="card-title">{{ Title }}</h5>
+                    <p>Rating: {{ Rating }}</p>
                 </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Genres: {{ Genres }}</li>
+                    <li class="list-group-item">Year: {{ Year }}</li>
+                </ul>
+                <a href="/home/movie/{{ ID }}" class="btn btn-primary">Details</a>
             </div>
+        </div>
         {{/each}}
     </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="/home/search/0?type=Movie&search={{query}}">1</a></li>
+            <li class="page-item"><a class="page-link" href="/home/search/1?type=Movie&search={{query}}">2</a></li>
+            <li class="page-item"><a class="page-link" href="/home/search/2?type=Movie&search={{query}}">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </div>

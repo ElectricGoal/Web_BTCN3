@@ -16,7 +16,12 @@
                         <a class="nav-link active" href="/home/favorite">Favorite</a>
                     </li>
                 </ul>
-                <form class="d-flex me-4" method="post" action="/home/search">
+                <form class="d-flex me-4" method="get" action="/home/search/0">
+                    <select name="type" class="form-select">
+                        <option selected>Search type</option>
+                        <option>Actor</option>
+                        <option>Movie</option>
+                    </select>
                     <input class="form-control me-2" name="search" type="search" placeholder="Search"
                         aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
@@ -42,7 +47,7 @@
                         <li class="list-group-item">Year: {{ Year }}</li>
                     </ul>
                     <a href="/home/movie/{{ ID }}" class="btn btn-primary">Details</a>
-                    
+
                     <form action="/home/favorite/delete/{{ ID }}" method="post" class="d-grid gap-2">
                         <button class="btn btn-danger" type="submit">Delete</button>
                     </form>

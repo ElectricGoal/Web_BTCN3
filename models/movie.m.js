@@ -8,6 +8,9 @@ const querySearch = `
 SELECT *
 FROM public."Movies" M
 WHERE M."Title" LIKE $1
+ORDER BY "Rating" DESC
+LIMIT 6
+OFFSET $2
 `
 
 const queryGetAll = `
@@ -67,8 +70,8 @@ INSERT INTO "Roles" ("CharacterName", "MovID", "CastID") VALUES (
 `
 
 class Movie {
-    async search(title) {
-        const { rows } = await db.query(querySearch, ['%' + title + '%'])
+    async search(title, page) {
+        const { rows } = await db.query(querySearch, ['%' + title + '%', page * 6])
         return rows
     }
 

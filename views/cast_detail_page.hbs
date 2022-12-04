@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/home/favorite">Favorite</a>
+                </li>
+            </ul>
+            <form class="d-flex me-4" method="get" action="/home/search/0">
+                <select name="type" class="form-select">
+                    <option selected>Search type</option>
+                    <option>Actor</option>
+                    <option>Movie</option>
+                </select>
+                <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <a href="/logout">
+                <button class="btn btn-outline-danger" type="button">Logout</button>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="mt-3">
+    <h3>Cast detail</h3>
+    {{#with cast}}
+    <div class="row">
+        <div class="col-4">
+            <img src={{ Image }} class="card-img-top" alt={{ ID }}>
+        </div>
+        <div class="col">
+            <h3>Name: {{ Name }}</h3>
+            <div>BirthDate: {{ BirthDate }}</div>
+            <div>BirthPlace: {{ BirthPlace }}</div>
+            <div>Gender: {{ Gender }}</div>
+            <div>Height: {{ Height }}</div>
+        </div>
+    </div>
+    {{/with}}
+</div>

@@ -24,6 +24,10 @@ class Auth {
         //search rows by email
         const {rows} = await db.query('SELECT * FROM public."Users" WHERE "f_Email" = $1', [email])
 
+        if (rows.length == 0){
+            return false
+        }
+
         //get password from database
         let hash = rows[0].f_Password
         // console.log(hash)

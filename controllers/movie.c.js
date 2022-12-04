@@ -1,5 +1,6 @@
 const movies = require('../models/movie.m')
 const favMovies = require('../models/favMovie.m');
+const castsM = require('../models/cast.m')
 
 class MovieController {
     
@@ -7,12 +8,15 @@ class MovieController {
         try {
             if (req.session.loggedin){
                 let movie_detail = await movies.getMovieDetail(req.params.id)
-                // console.log(typeof product_detail[0].FullDes)
+                
                 let inFav = await favMovies.isInFav(req.params.id)
+                let casts_data = await castsM.getCasts(req.params.id)
+                // console.log(casts_data)
                 res.render('movie_detail_page', {
                     movie: movie_detail[0],
                     id: movie_detail[0].ID,
                     isAdded: inFav,
+                    casts: casts_data
                 });
             }else{
                 req.session.back="/home";
@@ -28,15 +32,14 @@ class MovieController {
         try {
             if (req.session.loggedin){
                 await favMovies.addMovie(req.session.email, req.params.id)
-                // let url = '/home/movie/' + req.params.id
-                // res.redirect(url)
                 let movie_detail = await movies.getMovieDetail(req.params.id)
-                // console.log(typeof product_detail[0].FullDes)
+                let casts_data = await castsM.getCasts(req.params.id)
+                
                 res.render('movie_detail_page', {
                     movie: movie_detail[0],
                     id: movie_detail[0].ID,
                     isAdded: true,
-
+                    casts: casts_data
                 });
             }else{
                 req.session.back="/home";
