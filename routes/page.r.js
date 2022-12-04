@@ -19,6 +19,7 @@ router.get('/signup', pageController.signup);
 router.post('/signup', pageController.saveUser);
 router.use('/home', pageController.home);
 router.get('/logout', pageController.logout);
+router.use('/', pageController.home);
 
 
 module.exports = router
