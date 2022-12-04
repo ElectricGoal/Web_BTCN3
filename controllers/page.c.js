@@ -1,4 +1,5 @@
 const auth = require('../models/auth.m');
+const favMovie = require('../models/favMovie.m');
 const movies = require('../models/movie.m');
 
 class PageController {
@@ -27,6 +28,24 @@ class PageController {
                 let movies_data = await movies.search(req.body.search)
                 res.render('home_page', {
                     movies: movies_data
+                });
+            }else{
+                req.session.back="/home";
+                res.redirect('/login')
+            }
+            
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    async favorite(req, res, next) {
+        // res.render('home_page')
+        try {
+            if (req.session.loggedin){
+                let fav_movies_data = await favMovie.getFavMovs(req.session.email)
+                res.render('favorite_page', {
+                    movies: fav_movies_data
                 });
             }else{
                 req.session.back="/home";

@@ -190,6 +190,5 @@ class Movie {
 let movie = new Movie
 // movie.importCastFromJson()
 // movie.importMovieFromJson()
-movie.search("Spider")
 
 module.exports = new Movie;

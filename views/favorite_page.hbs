@@ -10,10 +10,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                        <a class="nav-link" aria-current="page" href="/home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link active" href="/home/favorite">Favorite</a>
                     </li>
                 </ul>
                 <form class="d-flex me-4" method="post" action="/home/search">
@@ -42,7 +42,10 @@
                         <li class="list-group-item">Year: {{ Year }}</li>
                     </ul>
                     <a href="/home/movie/{{ ID }}" class="btn btn-primary">Details</a>
-                    <div class="btn btn-primary">Delete</div>
+                    
+                    <form action="/home/favorite/delete/{{ ID }}" method="post" class="d-grid gap-2">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
                 </div>
             </div>
             {{!--
