@@ -1,26 +1,6 @@
 const {Pool, Client} = require('pg')
+const config = require('../configs/connectStr')
 
-const db = new Pool({
-    host: "localhost",
-    user: "postgres",
-    port: 5432,
-    password: "25082002",
-    database: "QLPA"
-});
+const db = new Pool(config);
 
 module.exports = db;
-
-
-// db.query('SELECT * FROM public."Users" WHERE "f_Username" = $1', ['abc'], (err, res) => {
-//     if (err){
-//         console.log(err.message);
-//     }else{
-//         console.log(res.rows[0])
-//         let user = res.rows[0]
-//         let email = user.f_Email
-//         let password = user.f_Password
-
-//         console.log(email)
-//         console.log(password)
-//     }
-// })
